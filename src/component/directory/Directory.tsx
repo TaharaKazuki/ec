@@ -1,5 +1,6 @@
 import React, { useState, FC } from 'react'
 import MenuItem from '../menu-item/MenuItem'
+import './style/directory.scss'
 
 interface ISections {
   title: string
