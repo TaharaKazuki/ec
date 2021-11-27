@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 //component
-import HomePage from './component/HomePage'
+import HomePage from './pages/homepage/HomePage'
+import './App.scss'
 
 const App: FC = () => {
   return (
