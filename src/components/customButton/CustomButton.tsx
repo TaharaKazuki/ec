@@ -1,15 +1,21 @@
-import React, { FC } from 'react'
+import React, { FC, DetailedHTMLProps } from 'react'
 import './style/customButton.scss'
 
-interface ICustomButton {
-  type: string
-}
+// interface ICustomButton {
+//   type: string
+//   value: string
+// }
 
-const CustomButton: FC<ICustomButton> = ({ children, ...otherProps }) => {
+const CustomButton: FC<
+  DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
+> = ({ children, ...otherProps }) => {
   return (
-    <div className="custom-button" {...otherProps}>
+    <button className="custom-button" {...otherProps}>
       {children}
-    </div>
+    </button>
   )
 }
 

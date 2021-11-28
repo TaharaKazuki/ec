@@ -30,24 +30,27 @@ const SignIn: FC = () => {
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
-      <form onSubmit={handleSubmit}></form>
-      <FormInput
-        name="email"
-        type="email"
-        handleChange={handleChange}
-        value={email}
-        label="email"
-        required
-      />
-      <FormInput
-        name="password"
-        type="password"
-        value={password}
-        handleChange={handleChange}
-        label="password"
-        required
-      />
-      <CustomButton type="submit">Sign in</CustomButton>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          type="email"
+          handleChange={handleChange}
+          value={email}
+          label="email"
+          required
+        />
+        <FormInput
+          name="password"
+          type="password"
+          value={password}
+          handleChange={handleChange}
+          label="password"
+          required
+        />
+        <CustomButton type="submit" value="Submit">
+          Sign in
+        </CustomButton>
+      </form>
     </div>
   )
 }
