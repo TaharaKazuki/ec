@@ -2,13 +2,12 @@ import React, { FC } from 'react'
 import './style/menuItem.scss'
 
 interface IMenuItemProps {
-  key: number
   title: string
   imageUrl: string
   size?: string
 }
 
-const MenuItem: FC<IMenuItemProps> = ({ key, title, imageUrl, size }) => {
+const MenuItem: FC<IMenuItemProps> = ({ title, imageUrl, size }) => {
   return (
     <div className={`${size} menu-item`}>
       <div

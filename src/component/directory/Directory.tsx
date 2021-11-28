@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { FC } from 'react'
 import MenuItem from '../menu-item/MenuItem'
 import './style/directory.scss'
 
@@ -10,7 +10,7 @@ interface ISections {
 }
 
 const Directory: FC = () => {
-  const [sections, setSections] = useState<ISections[]>([
+  const sections: ISections[] = [
     {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -38,7 +38,8 @@ const Directory: FC = () => {
       size: 'large',
       id: 5,
     },
-  ])
+  ]
+
   return (
     <div className="directory-menu">
       {sections.map(({ id, title, imageUrl, size }) => (
