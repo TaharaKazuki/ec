@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import CollectionItem from '../collectionItem/CollectionItem'
+import './style/collectionPreview.scss'
 
 interface ICollectionPreviewProps {
   title: string
   items: {
-    id: string
+    id: number
     name: string
     imageUrl: string
     price: number

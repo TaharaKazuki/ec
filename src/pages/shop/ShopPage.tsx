@@ -10,7 +10,7 @@ const ShopPage: FC = () => {
     <div className="shop-page">
       {collections.map(({ id, ...otherCollectionProps }) => (
         <div>
-          <CollectionPreview />
+          <CollectionPreview key={id} {...otherCollectionProps} />
         </div>
       ))}
     </div>
