@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import './style/homepage.scss'
-import Directory from '../../component/directory/Directory'
+import Directory from '../../components/directory/Directory'
 
 const HomePage: FC = () => {
   return (
