@@ -2,6 +2,7 @@ import React, { useState, FC, FormEvent, ChangeEvent } from 'react'
 
 import FormInput from '../formInput/FormInput'
 import CustomButton from '../customButton/CustomButton'
+import { sigInWithGoogle } from '../../firebase/firebaseUtils'
 
 import './style/signIn.scss'
 
@@ -50,6 +51,7 @@ const SignIn: FC = () => {
         <CustomButton type="submit" value="Submit">
           Sign in
         </CustomButton>
+        <CustomButton onClick={sigInWithGoogle}>Sign in Google</CustomButton>
       </form>
     </div>
   )
