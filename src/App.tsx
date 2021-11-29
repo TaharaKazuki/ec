@@ -18,11 +18,12 @@ const App: FC = () => {
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user)
+      console.info(user)
       return () => {
         unsubscribeFromAuth()
       }
     })
-  })
+  }, [])
 
   return (
     <div>
