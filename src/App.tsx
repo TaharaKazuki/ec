@@ -22,7 +22,7 @@ const App: FC = () => {
         unsubscribeFromAuth()
       }
     })
-  }, [])
+  })
 
   return (
     <div>
