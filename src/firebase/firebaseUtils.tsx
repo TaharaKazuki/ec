@@ -8,8 +8,8 @@ const config = {
   projectId: 'react-ec-6e800',
   storageBucket: 'react-ec-6e800.appspot.com',
   messagingSenderId: '994697266075',
-  appId: '1:994697266075:web:e8dad0f202f03a2607173e',
-  measurementId: 'G-2EFN6FVMTV',
+  appId: '1:994697266075:web:e1597c1315bc9e4407173e',
+  measurementId: 'G-G7P6V30YYQ',
 }
 
 firebase.initializeApp(config)

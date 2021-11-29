@@ -16,7 +16,7 @@ const CustomButton: FC<ICustomButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${isGoogleSignIn ? 'google-sign-in' : ''} "custom-button"`}
+      className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
       {...otherProps}
     >
       {children}

@@ -16,13 +16,13 @@ const App: FC = () => {
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user)
       return () => {
         unsubscribeFromAuth()
       }
     })
-  })
+  }, [])
 
   return (
     <div>

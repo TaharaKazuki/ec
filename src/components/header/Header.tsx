@@ -11,7 +11,6 @@ interface IHeaderProps {
 const Header: FC<IHeaderProps> = ({ currentUser }) => {
   return (
     <div className="header">
-      <span>current user:{currentUser}</span>
       <Link className="logo-container" to="/">
         <Logo className="logo" />
       </Link>
