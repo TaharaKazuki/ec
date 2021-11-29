@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 //router
 import { Switch, Route } from 'react-router-dom'
 // page component
@@ -7,13 +7,26 @@ import ShopPage from './pages/shop/ShopPage'
 import SignInSignUpPage from './pages/signin_signup/SignInSignUpPage'
 // common component
 import Header from './components/header/Header'
+// auth
+import firebase, { auth } from './firebase/firebaseUtils'
 // style
 import './App.scss'
 
 const App: FC = () => {
+  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
+
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user)
+      return () => {
+        unsubscribeFromAuth()
+      }
+    })
+  })
+
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser} />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import './style/header.scss'
+import firebase from '../../firebase/firebaseUtils'
 
-const Header = () => {
+interface IHeaderProps {
+  currentUser: firebase.User | null
+}
+
+const Header: FC<IHeaderProps> = ({ currentUser }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
