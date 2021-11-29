@@ -48,10 +48,14 @@ const SignIn: FC = () => {
           label="password"
           required
         />
-        <CustomButton type="submit" value="Submit">
-          Sign in
-        </CustomButton>
-        <CustomButton onClick={sigInWithGoogle}>Sign in Google</CustomButton>
+        <div className="buttons">
+          <CustomButton type="submit" value="Submit">
+            Sign in
+          </CustomButton>
+          <CustomButton isGoogleSignIn onClick={sigInWithGoogle}>
+            Sign in Google
+          </CustomButton>
+        </div>
       </form>
     </div>
   )

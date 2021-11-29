@@ -1,14 +1,24 @@
 import React, { FC, DetailedHTMLProps } from 'react'
 import './style/customButton.scss'
 
-const CustomButton: FC<
-  DetailedHTMLProps<
+interface ICustomButtonProps
+  extends DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-  >
-> = ({ children, ...otherProps }) => {
+  > {
+  isGoogleSignIn?: boolean
+}
+
+const CustomButton: FC<ICustomButtonProps> = ({
+  children,
+  isGoogleSignIn,
+  ...otherProps
+}) => {
   return (
-    <button className="custom-button" {...otherProps}>
+    <button
+      className={`${isGoogleSignIn ? 'google-sign-in' : ''} "custom-button"`}
+      {...otherProps}
+    >
       {children}
     </button>
   )
