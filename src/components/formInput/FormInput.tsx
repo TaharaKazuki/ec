@@ -18,7 +18,12 @@ const FormInput: FC<IFormInputProps> = ({
 }) => {
   return (
     <div className="group">
-      <input className="form-input" onChange={handleChange} {...otherProps} />
+      <input
+        value={value}
+        className="form-input"
+        onChange={handleChange}
+        {...otherProps}
+      />
       {label ? (
         <label className={`${value ? 'shrink' : ''} form-input-label`}>
           {label}
