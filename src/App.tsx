@@ -8,20 +8,29 @@ import SignInSignUpPage from './pages/signin_signup/SignInSignUpPage'
 // common component
 import Header from './components/header/Header'
 // auth
-import firebase, {
-  auth,
-  createUserProfileDocument,
-} from './firebase/firebaseUtils'
+import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
 // style
 import './App.scss'
 
+export interface ICurrentUser {
+  id: string
+  createdAt?: { secontd: number; nonosecondes: number }
+  displayName?: string
+  email?: string
+}
+
 const App: FC = () => {
-  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
+  const [currentUser, setCurrentUser] = useState<ICurrentUser | null>(null)
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user)
-      setCurrentUser(user)
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+        userRef?.onSnapshot((snapShot) => {
+          setCurrentUser({ id: snapShot.id, ...snapShot.data() })
+        })
+      }
+      setCurrentUser(null)
       return () => {
         unsubscribeFromAuth()
       }

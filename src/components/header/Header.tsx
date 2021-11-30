@@ -2,10 +2,11 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import './style/header.scss'
-import firebase, { auth } from '../../firebase/firebaseUtils'
+import { auth } from '../../firebase/firebaseUtils'
+import { ICurrentUser } from '../../App'
 
 interface IHeaderProps {
-  currentUser: firebase.User | null
+  currentUser: ICurrentUser | null
 }
 
 const Header: FC<IHeaderProps> = ({ currentUser }) => {
