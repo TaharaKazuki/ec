@@ -11,7 +11,7 @@ const SignIn: FC = () => {
   const [password, setPassword] = useState<string>('')
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    // event.preventDefault()
     setEmail('')
     setPassword('')
   }
