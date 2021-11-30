@@ -7,28 +7,25 @@ import { auth, sigInWithGoogle } from '../../firebase/firebaseUtils'
 import './style/signIn.scss'
 
 const SignIn: FC = () => {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  })
+
+  const { email, password } = state
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setState({ email: '', password: '' })
     try {
       await auth.signInWithEmailAndPassword(email, password)
-      setEmail('')
-      setPassword('')
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = event.target
-    if (name === 'email') {
-      setEmail(value)
-    }
-    if (name === 'password') {
-      setPassword(value)
-    }
+    setState({ ...state, [event.target.name]: event.target.value })
   }
 
   return (

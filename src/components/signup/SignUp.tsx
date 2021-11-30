@@ -8,10 +8,14 @@ import { auth, createUserProfileDocument } from '../../firebase/firebaseUtils'
 import './style/signup.scss'
 
 const SignUp = () => {
-  const [displayName, setDisplayName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [confirmPassword, setComfirmPassword] = useState<string>('')
+  const [state, setState] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+
+  const { displayName, email, password, confirmPassword } = state
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -27,31 +31,19 @@ const SignUp = () => {
       )
 
       await createUserProfileDocument(user, { displayName })
-
-      setDisplayName('')
-      setEmail('')
-      setPassword('')
-      setComfirmPassword('')
+      setState({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      })
     } catch (error) {
       console.error(error)
     }
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = event.target
-    if (name === 'displayName') {
-      setDisplayName(value)
-    }
-    if (name === 'email') {
-      setEmail(value)
-    }
-    if (name === 'password') {
-      setPassword(value)
-    }
-
-    if (name === 'confirmPassword') {
-      setComfirmPassword(value)
-    }
+    setState({ ...state, [event.target.name]: event.target.value })
   }
 
   return (
