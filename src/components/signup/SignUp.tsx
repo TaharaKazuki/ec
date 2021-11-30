@@ -14,6 +14,7 @@ const SignUp = () => {
   const [confirmPassword, setComfirmPassword] = useState<string>('')
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     if (password !== confirmPassword) {
       alert("password don't match")
       return
