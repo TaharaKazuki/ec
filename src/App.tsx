@@ -8,7 +8,10 @@ import SignInSignUpPage from './pages/signin_signup/SignInSignUpPage'
 // common component
 import Header from './components/header/Header'
 // auth
-import firebase, { auth } from './firebase/firebaseUtils'
+import firebase, {
+  auth,
+  createUserProfileDocument,
+} from './firebase/firebaseUtils'
 // style
 import './App.scss'
 
@@ -17,8 +20,8 @@ const App: FC = () => {
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user)
       setCurrentUser(user)
-      console.info(user)
       return () => {
         unsubscribeFromAuth()
       }
