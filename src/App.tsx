@@ -9,6 +9,8 @@ import SignInSignUpPage from './pages/signin_signup/SignInSignUpPage'
 import Header from './components/header/Header'
 // auth
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
+// reudx
+import { Provider } from 'react-redux'
 // style
 import './App.scss'
 
@@ -38,6 +40,7 @@ const App: FC = () => {
   }, [])
 
   return (
+    // <Provider store={store}>
     <div>
       <Header currentUser={currentUser} />
       <Switch>
@@ -46,6 +49,7 @@ const App: FC = () => {
         <Route exact path="/signin" component={SignInSignUpPage} />
       </Switch>
     </div>
+    // </Provider>
   )
 }
 
