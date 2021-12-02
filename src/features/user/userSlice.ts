@@ -16,13 +16,12 @@ export const userSlice = createSlice({
     setCurrentUser: (state, action: PayloadAction<IUserState>) => {
       if (action.payload.currentUser) {
         state.currentUser = {
-          id: action.payload.currentUser.id,
-          ...action.payload,
+          ...action.payload.currentUser,
         }
       }
+      console.info('state だよ', state.currentUser)
     },
   },
 })
-
 export const { setCurrentUser } = userSlice.actions
 export default userSlice.reducer

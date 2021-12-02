@@ -7,7 +7,12 @@ const reducer = {
 }
 export const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['user/setCurrentUser'],
+      },
+    }).concat(logger),
 })
 
 export type RootState = ReturnType<typeof store.getState>
