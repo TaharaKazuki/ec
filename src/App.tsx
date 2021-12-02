@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useEffect, FC } from 'react'
 //router
 import { Switch, Route } from 'react-router-dom'
 // page component
@@ -10,10 +10,13 @@ import Header from './components/header/Header'
 // auth
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
 // reudx
-import { setCurrentUser, selectUser } from './features/user/userSlice'
+import { setCurrentUser } from './features/user/userSlice'
+import { useAppSelector, useAppDispatch } from './app/hooks'
+
 // style
 import './App.scss'
 
+// 後で場所を変える
 export interface ICurrentUser {
   id: string
   createdAt?: { secontd: number; nonosecondes: number }
@@ -22,7 +25,7 @@ export interface ICurrentUser {
 }
 
 const App: FC = () => {
-  const currentUser = selectUser
+  const currentUser = useAppSelector((state) => state.user.currentUser)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -30,10 +33,14 @@ const App: FC = () => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
         userRef?.onSnapshot((snapShot) => {
-          dispatch(setCurrentUser({ id: snapShot.id, ...snapShot.data() }))
+          dispatch(
+            setCurrentUser({
+              currentUser: { id: snapShot.id, ...snapShot.data() },
+            })
+          )
         })
       }
-      setCurrentUser(null)
+      dispatch(setCurrentUser({ currentUser: null }))
       return () => {
         unsubscribeFromAuth()
       }
