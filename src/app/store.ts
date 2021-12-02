@@ -1,7 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
+import userReducer from '../features/user/userSlice'
 
-const reducer = {}
+const reducer = {
+  user: userReducer,
+}
 export const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -9,3 +12,9 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>

@@ -10,8 +10,7 @@ import Header from './components/header/Header'
 // auth
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
 // reudx
-import { store } from './app/store'
-import { Provider } from 'react-redux'
+import { setCurrentUser, selectUser } from './features/user/userSlice'
 // style
 import './App.scss'
 
@@ -23,14 +22,15 @@ export interface ICurrentUser {
 }
 
 const App: FC = () => {
-  const [currentUser, setCurrentUser] = useState<ICurrentUser | null>(null)
+  const currentUser = selectUser
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
         userRef?.onSnapshot((snapShot) => {
-          setCurrentUser({ id: snapShot.id, ...snapShot.data() })
+          dispatch(setCurrentUser({ id: snapShot.id, ...snapShot.data() }))
         })
       }
       setCurrentUser(null)
@@ -41,16 +41,14 @@ const App: FC = () => {
   }, [])
 
   return (
-    <Provider store={store}>
-      <div>
-        <Header currentUser={currentUser} />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/signin" component={SignInSignUpPage} />
-        </Switch>
-      </div>
-    </Provider>
+    <div>
+      <Header currentUser={currentUser} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/signin" component={SignInSignUpPage} />
+      </Switch>
+    </div>
   )
 }
 
