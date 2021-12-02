@@ -26,7 +26,6 @@ const App: FC = () => {
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      console.info('通過')
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
         userRef?.onSnapshot((snapShot) => {
