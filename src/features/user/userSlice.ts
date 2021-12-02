@@ -19,7 +19,6 @@ export const userSlice = createSlice({
           ...action.payload.currentUser,
         }
       }
-      console.info('state だよ', state.currentUser)
     },
   },
 })
