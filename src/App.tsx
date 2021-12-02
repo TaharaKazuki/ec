@@ -10,6 +10,7 @@ import Header from './components/header/Header'
 // auth
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
 // reudx
+import { store } from './app/store'
 import { Provider } from 'react-redux'
 // style
 import './App.scss'
@@ -40,16 +41,16 @@ const App: FC = () => {
   }, [])
 
   return (
-    // <Provider store={store}>
-    <div>
-      <Header currentUser={currentUser} />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
-        <Route exact path="/signin" component={SignInSignUpPage} />
-      </Switch>
-    </div>
-    // </Provider>
+    <Provider store={store}>
+      <div>
+        <Header currentUser={currentUser} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/signin" component={SignInSignUpPage} />
+        </Switch>
+      </div>
+    </Provider>
   )
 }
 
