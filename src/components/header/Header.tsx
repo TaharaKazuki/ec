@@ -5,11 +5,24 @@ import './style/header.scss'
 import { auth } from '../../firebase/firebaseUtils'
 import { ICurrentUser } from '../../App'
 
+import { useAppDispatch } from '../../app/hooks'
+import { setCurrentUser } from '../../features/user/userSlice'
+
 interface IHeaderProps {
   currentUser: ICurrentUser | null
 }
 
 const Header: FC<IHeaderProps> = ({ currentUser }) => {
+  const dispatch = useAppDispatch()
+
+  const signOut = () => {
+    auth.signOut()
+    dispatch(
+      setCurrentUser({
+        currentUser: null,
+      })
+    )
+  }
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -23,7 +36,7 @@ const Header: FC<IHeaderProps> = ({ currentUser }) => {
           CONTACT
         </Link>
         {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <div className="option" onClick={signOut}>
             SIGN OUT
           </div>
         ) : (

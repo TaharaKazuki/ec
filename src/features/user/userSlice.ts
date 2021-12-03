@@ -14,11 +14,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action: PayloadAction<IUserState>) => {
-      if (action.payload.currentUser) {
-        state.currentUser = {
-          ...action.payload.currentUser,
-        }
-      }
+      state.currentUser = action.payload.currentUser
+        ? { ...action.payload.currentUser }
+        : null
     },
   },
 })
