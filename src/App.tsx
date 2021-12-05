@@ -26,6 +26,7 @@ export interface ICurrentUser {
 
 const App: FC = () => {
   const currentUser = useAppSelector((state) => state.user.currentUser)
+  const displayParam = useAppSelector((state) => state.cart.displayParam)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const App: FC = () => {
 
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header currentUser={currentUser} displayParam={displayParam} />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />

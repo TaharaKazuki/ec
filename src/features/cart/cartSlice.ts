@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export interface ICartState {
   displayParam: boolean
@@ -12,8 +12,8 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    toggleCartDisplay: (state, action: PayloadAction<ICartState>) => {
-      state.displayParam = !action.payload.displayParam
+    toggleCartDisplay: (state) => {
+      state.displayParam = !state.displayParam
     },
   },
 })
