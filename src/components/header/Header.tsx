@@ -10,7 +10,7 @@ import './style/header.scss'
 import { auth } from '../../firebase/firebaseUtils'
 
 // interface
-import { ICurrentUser } from '../../App'
+import { ICurrentUser } from '../../typed/userTyped'
 // redux
 import { useAppDispatch } from '../../app/hooks'
 import { setCurrentUser } from '../../features/user/userSlice'

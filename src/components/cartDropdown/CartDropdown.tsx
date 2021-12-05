@@ -1,5 +1,7 @@
 import React from 'react'
+// component
 import CustomButton from '../customButton/CustomButton'
+// style
 import './style/cartDropdown.scss'
 
 const CartDropdown = () => {

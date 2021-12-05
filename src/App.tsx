@@ -12,17 +12,8 @@ import { auth, createUserProfileDocument } from './firebase/firebaseUtils'
 // reudx
 import { setCurrentUser } from './features/user/userSlice'
 import { useAppSelector, useAppDispatch } from './app/hooks'
-
 // style
 import './App.scss'
-
-// 後で場所を変える
-export interface ICurrentUser {
-  id: string
-  createdAt?: { secontd: number; nonosecondes: number }
-  displayName?: string
-  email?: string
-}
 
 const App: FC = () => {
   const currentUser = useAppSelector((state) => state.user.currentUser)

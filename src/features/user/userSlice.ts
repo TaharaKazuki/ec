@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICurrentUser } from '../../App'
+import { ICurrentUser } from '../../typed/userTyped'
 
 export interface IUserState {
   currentUser: ICurrentUser | null
