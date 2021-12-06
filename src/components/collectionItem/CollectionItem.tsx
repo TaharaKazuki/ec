@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import './style/collectionItem.scss'
+import CustomButton from '../customButton/CustomButton'
 
 interface ICollectionItemProps {
   name: string
