@@ -2,12 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface ICartState {
   displayParam: boolean
-  cartItems: string[]
+  cartItems: ICartItems
 }
+
+type ICartItems = {
+  name: string
+  price: number
+  imageUrl: string
+}[]
 
 const initialState = {
   displayParam: true,
-  cartItems: [] as string[],
+  cartItems: [] as ICartItems,
 }
 
 export const cartSlice = createSlice({
@@ -17,11 +23,11 @@ export const cartSlice = createSlice({
     toggleCartDisplay: (state) => {
       state.displayParam = !state.displayParam
     },
-    addCartItem: (state, action: PayloadAction<string>) => {
-      state.cartItems = [...state.cartItems, action.payload]
+    addCartItem: (state, action: PayloadAction<ICartItems>) => {
+      state.cartItems = [...state.cartItems, ...action.payload]
     },
   },
 })
 
-export const { toggleCartDisplay } = cartSlice.actions
+export const { toggleCartDisplay, addCartItem } = cartSlice.actions
 export default cartSlice.reducer

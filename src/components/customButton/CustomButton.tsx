@@ -7,6 +7,7 @@ interface ICustomButtonProps
     HTMLButtonElement
   > {
   isGoogleSignIn?: boolean
+  inverted?: boolean
 }
 
 const CustomButton: FC<ICustomButtonProps> = ({

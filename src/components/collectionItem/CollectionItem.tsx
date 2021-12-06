@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
 import './style/collectionItem.scss'
 import CustomButton from '../customButton/CustomButton'
+// redux
+import { addCartItem } from '../../features/cart/cartSlice'
+import { useAppDispatch } from '../../app/hooks'
 
 interface ICollectionItemProps {
   name: string
@@ -13,6 +16,8 @@ const CollectionItem: FC<ICollectionItemProps> = ({
   price,
   imageUrl,
 }) => {
+  const dispatch = useAppDispatch()
+
   return (
     <div className="collection-item">
       <div
@@ -25,6 +30,12 @@ const CollectionItem: FC<ICollectionItemProps> = ({
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <CustomButton
+        onClick={() => dispatch(addCartItem([{ name, price, imageUrl }]))}
+        inverted
+      >
+        Add Cart
+      </CustomButton>
     </div>
   )
 }
