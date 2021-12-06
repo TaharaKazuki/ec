@@ -32,7 +32,7 @@ const CollectionItem: FC<ICollectionItemProps> = ({
       </div>
       <CustomButton
         onClick={() => dispatch(addCartItem([{ name, price, imageUrl }]))}
-        inverted
+        inverted={true}
       >
         Add Cart
       </CustomButton>

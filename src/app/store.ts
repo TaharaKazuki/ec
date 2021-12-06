@@ -12,7 +12,11 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['user/setCurrentUser', 'cart/toggleCartDisplay'],
+        ignoredActions: [
+          'user/setCurrentUser',
+          'cart/toggleCartDisplay',
+          'cart/addCartItem',
+        ],
       },
     }).concat(logger),
 })
