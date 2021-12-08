@@ -2,7 +2,6 @@ import React from 'react'
 // component
 import CartItem from '../cartItem/CartItem'
 import CustomButton from '../customButton/CustomButton'
-
 // redux
 import { useAppSelector } from '../../app/hooks'
 // style
