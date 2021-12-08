@@ -44,7 +44,6 @@ const addItemToCart = (cartItems: ICartItems, cartItemToAdd: ICartItem) => {
         : cartItem
     )
   }
-
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
 }
 
