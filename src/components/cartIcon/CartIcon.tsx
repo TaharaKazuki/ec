@@ -7,13 +7,13 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import './style/cartIcon.scss'
 
 const CartIcon: FC = () => {
-  const itemCount = useAppSelector((state) => {
-    return state.cart.cartItems.reduce(
+  const itemCount = useAppSelector((state) =>
+    state.cart.cartItems.reduce(
       (accumalatedQuantity, cartItem) =>
         accumalatedQuantity + cartItem.quantity!,
       0
     )
-  })
+  )
 
   const dispatch = useAppDispatch()
 
