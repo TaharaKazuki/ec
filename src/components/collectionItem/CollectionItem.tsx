@@ -6,12 +6,14 @@ import { addCartItem } from '../../features/cart/cartSlice'
 import { useAppDispatch } from '../../app/hooks'
 
 interface ICollectionItemProps {
+  id: number
   name: string
   price: number
   imageUrl: string
 }
 
 const CollectionItem: FC<ICollectionItemProps> = ({
+  id,
   name,
   price,
   imageUrl,
@@ -31,7 +33,7 @@ const CollectionItem: FC<ICollectionItemProps> = ({
         <span className="price">{price}</span>
       </div>
       <CustomButton
-        onClick={() => dispatch(addCartItem([{ name, price, imageUrl }]))}
+        onClick={() => dispatch(addCartItem({ id, name, price, imageUrl }))}
         inverted={true}
       >
         Add Cart

@@ -5,11 +5,15 @@ export interface ICartState {
   cartItems: ICartItems
 }
 
-type ICartItems = {
+interface ICartItem {
+  id: number
   name: string
   price: number
   imageUrl: string
-}[]
+  quantity?: number
+}
+
+type ICartItems = ICartItem[]
 
 const initialState = {
   displayParam: true,
@@ -23,11 +27,26 @@ export const cartSlice = createSlice({
     toggleCartDisplay: (state) => {
       state.displayParam = !state.displayParam
     },
-    addCartItem: (state, action: PayloadAction<ICartItems>) => {
-      state.cartItems = [...state.cartItems, ...action.payload]
+    addCartItem: (state, action: PayloadAction<ICartItem>) => {
+      state.cartItems = addItemToCart(state.cartItems, action.payload)
     },
   },
 })
+
+const addItemToCart = (cartItems: ICartItems, cartItemToAdd: ICartItem) => {
+  const existingCartItem = cartItems.find(
+    (cartItems) => cartItems.id === cartItemToAdd.id
+  )
+  if (existingCartItem) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === cartItemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity! + 1 }
+        : cartItem
+    )
+  }
+
+  return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
+}
 
 export const { toggleCartDisplay, addCartItem } = cartSlice.actions
 export default cartSlice.reducer
